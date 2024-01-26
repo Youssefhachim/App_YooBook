@@ -1,0 +1,35 @@
+﻿@model BookShoppingCartMvcUI.Models.Genre
+
+@{
+    ViewData["Title"] = "Supprimer";
+}
+
+<style>
+    body, h1, h3, h4, label, .row, .col-sm-2, .col-sm-10, .btn {
+        color: white;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="display-4">Supprimer</h1>
+
+    <h3 class="mt-4">Êtes-vous sûr de vouloir supprimer ceci ?</h3>
+    <div>
+        <h4>Genre</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.GenreName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.GenreName)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Supprimer</button> |
+            <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+        </form>
+    </div>
+</div>

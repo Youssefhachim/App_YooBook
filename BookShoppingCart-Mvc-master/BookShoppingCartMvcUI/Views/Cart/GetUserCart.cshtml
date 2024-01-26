@@ -1,0 +1,59 @@
+﻿@model ShoppingCart
+@{
+    ViewData["Title"] = "ObtenirPanierUtilisateur";
+}
+
+<div style="width:90%; margin:auto; color:white" class="mt-2">
+    @if (Model != null && Model.CartDetails != null && Model.CartDetails.Count > 0)
+    {
+        <h5>Mon Panier</h5>
+
+        <table class="table table-striped text-white">
+            <tr class="text-white">
+                <th>Livre</th>
+                <th>Image</th>
+                <th>Genre</th>
+                <th>Prix unitaire(INR)</th>
+                <th>Prix total</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model.CartDetails)
+            {
+                <tr class="text-white">
+                    <td>@item.Book.BookName</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(item.Book.Image))
+                        {
+                            <img src="/images/NoImage.png" style="width:80px;height:100px" />
+                        }
+                        else
+                        {
+                            <img src="/images/@item.Book.Image" style="width:80px;height:100px" />
+                        }
+                    </td>
+                    <td>@item.Book.Genre.GenreName</td>
+                    <td>@item.Book.Price X @item.Quantity</td>
+                    <td>@(item.Book.Price * item.Quantity)</td>
+                    <td>
+                        <a class="btn btn-info" href="/Cart/AddItem?bookId=@item.BookId&&redirect=1">+</a>
+                        <a class="btn btn-info" href="/cart/removeitem?bookid=@item.BookId">-</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div class="my-2 text-white">
+            <h5>Total(INR): </h5>
+            @(Model.CartDetails.Select(item => item.Book.Price * item.Quantity).Sum())
+        </div>
+
+        <div class="my-2">
+            <a class="btn btn-primary" href="/Cart/Checkout">Paiement</a>
+        </div>
+
+    }
+    else
+    {
+        <h5>Le panier est vide</h5>
+    }
+</div>

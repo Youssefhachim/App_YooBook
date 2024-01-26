@@ -1,0 +1,59 @@
+﻿@model BookShoppingCartMvcUI.Models.Book
+
+@{
+    ViewData["Title"] = "Supprimer";
+}
+
+<style>
+    body, label, dt, dd {
+        color: white;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="display-4">Supprimer</h1>
+
+    <h3 class="mt-4">Êtes-vous sûr de vouloir supprimer ceci ?</h3>
+    <div>
+        <h4>Livre</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BookName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.BookName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AuthorName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AuthorName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Genre.GenreName)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" class="mt-4">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Supprimer</button> |
+            <a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>
+        </form>
+    </div>
+</div>
